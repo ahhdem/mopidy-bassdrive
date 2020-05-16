@@ -49,7 +49,7 @@ class BassdriveLibraryProvider(backend.LibraryProvider):
             # add current stream
             refs = [self._track_to_ref(self._stream_track, self._stream_uri)]
             # browse archive
-            fd = urllib.urlopen(self._archive_url)
+            fd = urllib.request.urlopen(self._archive_url)
             soup = BeautifulSoup(fd)
             container = soup.find(id='listingContainer')
             if container:
@@ -73,7 +73,7 @@ class BassdriveLibraryProvider(backend.LibraryProvider):
         # uri == 'bassdrive:archive:/url
         if len(parts) == 3 and parts[1] == 'archive':
             base_url = parts[2]
-            fd = urllib.urlopen(
+            fd = urllib.request.urlopen(
                 'http://archives.bassdrivearchive.com%s' % base_url)
             soup = BeautifulSoup(fd)
             refs = []
